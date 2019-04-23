@@ -51,8 +51,17 @@ public class ScanProduct implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange t) throws IOException {
-		String response = null;
-		byte[] str=null;
+		/* JSONObject response=null; 
+		try {
+			JSONObject obj=new JSONObject();
+			obj=getJsonResponse();
+			response = obj;
+                        t.sendResponseHeaders(200,response.length());
+            
+		      upon sending a jsonobject as response,
+		      the same err_length_mismatch is coming on server
+		*/
+		String response = null;  
 		try {
 			JSONObject obj=new JSONObject();
 			obj=getJsonResponse();
@@ -74,7 +83,7 @@ public class ScanProduct implements HttpHandler {
 		os.close();
 
 	}
-	public static JSONObject getProducts(Item items)
+	public static JSONObject getProducts(Item items  //method to create a JSONObject of the items from dynamoDB
 	{
 		 JSONObject obj = new JSONObject();
 		   try {
@@ -82,7 +91,7 @@ public class ScanProduct implements HttpHandler {
 		      obj.put("Description", items.get("Description"));
 		      obj.put("Image", items.get("Image"));
 		      obj.put("Price", items.get("Price"));
-		      //obj.put("Product_id", items.get("Product_id"));
+		      obj.put("Product_id", items.get("Product_id"));
 		      obj.put("Product_id", items.get("Product_id"));
 		      obj.put("Product_name", items.get("Product_name"));
 		   return obj ;
