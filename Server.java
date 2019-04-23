@@ -44,7 +44,7 @@ public class Server {
 		server.createContext("/wishlist", new Post1());
 		server.createContext("/product", new Post2());
 		server.createContext("/show", new ScannerPdt());
-		server.createContext("/productspage", new ScanProduct());
+		server.createContext("/productspage", new ScanProduct());  //to call the method that returns a JSONObject of the scanned items from database
 		server.setExecutor(null); // creates a default executor
 		server.start();
 		System.out.println("Started server");
